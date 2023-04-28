@@ -17,6 +17,7 @@ app.use(
 );
 app.use(express.static("public"));
 
+
 app.get("/", (req, res) => {
   res.render("home");
 });
@@ -26,7 +27,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/userDB");
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
-});  
+});
 
 userSchema.plugin(encrypt, {
   secret: process.env.SECRET,
@@ -42,7 +43,6 @@ app.get("/login", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("register");
 });
-
 
 app.post("/register", (req, res) => {
   const newUser = new User({
@@ -70,5 +70,5 @@ app.post("/login", (req, res) => {
 });
 
 app.listen(3000, function () {
-  console.log("Server started on port 3000");
+  console.log("Server has started on port 3000");
 });
